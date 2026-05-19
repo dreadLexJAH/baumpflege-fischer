@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, Menu, X } from "lucide-react";
-import logo from "../../assets/logo_certs/logo_transparent.png";
+import logo from "../../assets/logo_certs/logo_header1.png";
 import logoWatermark from "../../assets/logo_certs/logo_watermark.png";
 
 const navLinks = [
@@ -106,7 +106,7 @@ export function Header() {
               letterSpacing: "0.02em",
             }}
           >
-            BAUMPFLEGE FISCHER
+            Baumpflege Fischer
           </span>
         </a>
 
