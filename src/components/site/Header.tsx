@@ -106,7 +106,7 @@ export function Header() {
               letterSpacing: "0.02em",
             }}
           >
-            TEST HEADER
+            BAUMPFLEGE FISCHER
           </span>
         </a>
 
