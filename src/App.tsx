@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  TreeDeciduous, Scissors, Axe, Sprout, Apple, Fence, CloudLightning, SearchCheck, LeafyGreen, Heart,
-  ShieldCheck, Eye, Award, MapPin, Phone, Mail, ExternalLink, ChevronDown,
+  TreeDeciduous, Axe, Sprout, Apple, CloudLightning, SearchCheck, LeafyGreen, Heart,
+  ShieldCheck, Eye, Award, MapPin, Phone, Mail, ChevronDown,
 Play,
 } from "lucide-react";
 import { Header } from "./components/site/Header";
@@ -10,9 +10,8 @@ import { Lightbox } from "./components/site/Lightbox";
 import hero from "./assets/hero_ubermich/hero_breit_v1_optimized.jpg";
 import owner from "./assets/hero_ubermich/owner_final_ersatz.png";
 import logo from "./assets/logo_certs/logo_transparent.png";
+import logoWatermark from "./assets/logo_certs/logo_watermark.png";
 import maibaum from "./assets/signature_gallery/maibaum.JPG";
-import wipfell_peace from "./assets/before_after/wipfel_before.jpg";
-import pritschn_quer from "./assets/dokumentarisch/pritschn_quer.jpg";
 import stefanstihl_original from "./assets/dokumentarisch/stefanstihl_original.jpg";
 import pritsche_anhaenger from "./assets/dokumentarisch/pritsche_anhaenger.jpg";
 import seilaction_scharf from "./assets/dokumentarisch/seilaction_scharf.jpg";
@@ -142,12 +141,13 @@ function BeforeAfterSlider({
   after,
   title,
   aspect = "aspect-[4/3]",
+
 }: {
   before: string;
   after: string;
   title: string;
   aspect?: string;
-}) {
+}) { 
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -170,7 +170,12 @@ function BeforeAfterSlider({
       <div
   ref={sliderRef}
   style={{ ["--position" as any]: "50%" }}
-  className="relative w-full overflow-hidden rounded-2xl group select-none touch-none shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)]"
+  className={`
+    relative w-full overflow-hidden rounded-2xl
+    group select-none touch-none
+    shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)]
+    ${aspect}
+  `}
   onMouseMove={(e) => {
     if (e.buttons === 1) handleMove(e.clientX);
   }}
@@ -178,12 +183,6 @@ function BeforeAfterSlider({
     handleMove(e.touches[0].clientX);
   }}
 >
-
-<img
-  src={after}
-  alt=""
-  className="w-full h-auto opacity-0 pointer-events-none select-none"
-/>
 
 {/* AFTER */}
 <img
@@ -282,7 +281,7 @@ export default function App() {
 {/* HERO */}
 <section
   id="start"
-  className="relative min-h-[920px] md:min-h-screen w-full overflow-hidden"
+  className="relative min-h-[760px] md:min-h-[88svh] md:min-h-screen w-full overflow-hidden"
 >
 
   {/* PARALLAX IMAGE */}
@@ -311,45 +310,70 @@ export default function App() {
       y: heroTextY,
       opacity: heroOpacity,
     }}
-    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 pt-56 md:pt-64 pb-40 md:pb-32"
+    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6 pt-36 md:pt-52 pb-24 md:pb-28"
   >
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-      className="max-w-5xl"
+      className="max-w-[340px] min-[490px]:max-w-3xl lg:max-w-[980px]"
     >
 
-      <p className="text-[var(--cream)]/82 tracking-[0.38em] text-[11px] md:text-xs uppercase mb-12 md:mb-14">
+      <p className="text-[var(--cream)]/82 tracking-[0.3em] text-[11px] md:text-xs uppercase mb-10 md:mb-12">
         Baumpflege Fischer · Gutenstein
       </p>
 
-      <h1 className="font-display text-[3.7rem] leading-[0.92] sm:text-[4.2rem] md:text-7xl lg:text-8xl text-white font-normal">
-        Ihre Bäume —
-        <br />
-        <em className="italic text-[var(--cream)]">
-          meine Leidenschaft.
-        </em>
-      </h1>
+      <h1 className="
+font-display
+text-[2.9rem]
+min-[490px]:text-[4rem]
+md:text-[5.5rem]
+lg:text-[6.8rem]
+xl:text-[7.5rem]
+leading-[0.92]
+text-white
+font-normal
+tracking-[-0.03em]
+">
 
-      <p className="mt-10 text-white/88 text-[1.55rem] md:text-xl max-w-3xl mx-auto font-light leading-relaxed whitespace-pre-line">
+  Ihre Bäume —
+  <br />
+  <em className="italic text-[var(--cream)]">
+    meine Leidenschaft.
+  </em>
+</h1>
+
+      <p className="
+mt-7
+text-white/90
+text-[0.82rem]
+min-[490px]:text-[0.92rem]
+md:text-[1.05rem]
+max-w-[340px]
+md:max-w-xl
+mx-auto
+font-light
+leading-relaxed
+whitespace-pre-line
+">
+  
         Handwerk, Erfahrung und tiefer Respekt vor der Natur.
         {"\n"}
         In der Region Ostösterreichs.
       </p>
 
-      <div className="mt-24 md:mt-28 flex flex-col sm:flex-row items-center justify-center gap-5">
+      <div className="mt-9 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
 
         <a
           href="#kontakt"
-          className="px-10 py-5 bg-[var(--cream)] text-[var(--forest-deep)] text-sm tracking-[0.12em] uppercase hover:bg-white transition-all duration-300 hover:scale-[1.02]"
+          className="px-10 py-5 bg-[var(--cream)] text-[var(--forest-deep)] text-sm tracking-[0.14em] uppercase hover:bg-white transition-all duration-300 hover:scale-[1.02]"
         >
           Kostenlose Besichtigung
         </a>
 
         <a
           href="#leistungen"
-          className="px-10 py-5 border border-white/30 text-white text-sm tracking-[0.12em] uppercase hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]"
+          className="px-10 py-5 border border-white/30 text-white text-sm tracking-[0.14em] uppercase hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]"
         >
           Leistungen
         </a>
@@ -363,9 +387,9 @@ export default function App() {
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1, delay: 1 }}
-    className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-black/20 backdrop-blur-[8px]"
+    className="relative z-20 -mt-10 md:-mt-16"
   >
-    <div className="mx-auto max-w-6xl px-6 py-5 md:py-6 grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
+    <div className="mx-auto max-w-6xl px-6 py-4 md:py-5 grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
       {trust.map((t) => (
         <div
           key={t.label}
@@ -389,7 +413,7 @@ export default function App() {
   <motion.div
     animate={{ y: [0, 8, 0] }}
     transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-    className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 text-white/70"
+    className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-10 text-white/82"
   >
     <ChevronDown size={22} />
   </motion.div>
@@ -397,7 +421,7 @@ export default function App() {
 </section>
 
       {/* INTRO */}
-      <section className="py-28 md:py-36 px-6">
+      <section className="py-16 md:py-28 px-6">
         <div className="mx-auto max-w-3xl text-center">
           <motion.p {...fadeUp()} className="tracking-[0.3em] uppercase mb-6 text-base">
             Kompetent · Fair · Zuverlässig
@@ -411,7 +435,7 @@ export default function App() {
         </div>
         <motion.figure
           {...fadeUp(0.3)}
-          className="mx-auto max-w-5xl mt-16 md:mt-20 overflow-hidden rounded-2xl shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5"
+          className="mx-auto max-w-5xl mt-9 md:mt-12 overflow-hidden rounded-2xl shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5"
         >
           <img
             src={introMountain}
@@ -425,7 +449,7 @@ export default function App() {
   {/* SERVICES */}
 <section
   id="leistungen"
-  className="relative py-28 md:py-36 px-6 bg-[linear-gradient(to_bottom,#F4F1EA,#ECE7DC)] overflow-hidden"
+  className="relative py-20 md:py-28 px-6 bg-[linear-gradient(to_bottom,#F4F1EA,#ECE7DC)] overflow-hidden"
 >
 
   {/* SUBTLE BACKGROUND GLOW */}
@@ -434,7 +458,7 @@ export default function App() {
   <div className="relative mx-auto max-w-7xl">
 
     {/* HEADER */}
-    <div className="text-center mb-24">
+    <div className="text-center mb-14 md:mb-20">
 
       <motion.p
         {...fadeUp()}
@@ -445,7 +469,7 @@ export default function App() {
 
       <motion.h2
         {...fadeUp(0.1)}
-        className="text-4xl md:text-5xl"
+        className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em]"
       >
         Handwerk an Ihren Bäumen
       </motion.h2>
@@ -453,7 +477,7 @@ export default function App() {
     </div>
 
     {/* GRID */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-[1500px] mx-auto">
+    <div className="grid grid-cols-1 min-[700px]:grid-cols-2 xl:grid-cols-4 gap-5 max-w-[1500px] mx-auto">
 
       {services.map((s, i) => (
         <motion.div
@@ -473,7 +497,7 @@ export default function App() {
             bg-white/72
             backdrop-blur-[6px]
             p-9
-            min-h-[340px] lg:min-h-[380px] xl:min-h-[340px]
+            min-h-[300px] lg:min-h-[340px] xl:min-h-[320px]
             flex flex-col
             shadow-[0_10px_40px_rgba(0,0,0,0.04)]
             hover:shadow-[0_28px_90px_rgba(0,0,0,0.10)]
@@ -498,7 +522,7 @@ export default function App() {
           </div>
 
           {/* TITLE */}
-          <h3 className="relative text-[2rem] leading-tight mb-4 text-[var(--forest-deep)]">
+          <h3 className="relative text-[1.75rem] md:text-[1.9rem] leading-tight mb-4 text-[var(--forest-deep)]">
             {s.title}
           </h3>
 
@@ -524,14 +548,13 @@ export default function App() {
           relative overflow-hidden
           rounded-[32px]
           bg-[linear-gradient(to_bottom_right,#203326,#16241D)]
-          p-10
+          p-8
           flex flex-col justify-center
           text-[var(--cream)]
           shadow-[0_24px_90px_rgba(0,0,0,0.20)]
 hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
-          sm:col-span-2
-          lg:col-span-1
+          min-[700px]:col-span-2
           xl:col-span-4
           xl:min-h-[260px]
           xl:items-center
@@ -579,7 +602,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
       {/* ABOUT */}
       <section
   id="ueber"
-  className="relative py-32 md:py-40 px-6 overflow-hidden bg-[linear-gradient(to_bottom,#F7F3EC,#F1ECE3)]"
+  className="relative py-20 md:py-28 px-6 overflow-hidden bg-[linear-gradient(to_bottom,#F7F3EC,#F1ECE3)]"
 >
         <div className="mx-auto max-w-7xl grid lg:grid-cols-[0.95fr_1.05fr] gap-16 lg:gap-24 items-center">
           <motion.div {...fadeUp()} className="relative">
@@ -652,12 +675,12 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 {/* GALLERY */}
 <section
   id="galerie"
-  className="relative py-28 md:py-36 px-6 bg-[radial-gradient(circle_at_top,#1A241D_0%,#111512_58%)] text-[var(--cream)] overflow-hidden"
+  className="relative py-20 md:py-28 px-6 bg-[radial-gradient(circle_at_top,#1A241D_0%,#111512_58%)] text-[var(--cream)] overflow-hidden"
 >
   <div className="mx-auto max-w-7xl">
 
     {/* HEADER */}
-    <div className="text-center mb-16">
+    <div className="text-center mb-12 md:mb-14">
       <motion.p
         {...fadeUp()}
         className="text-[var(--cream)]/60 tracking-[0.3em] text-xs uppercase mb-5"
@@ -667,14 +690,14 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
       <motion.h2
         {...fadeUp(0.1)}
-        className="text-4xl md:text-5xl text-white"
+        className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em] text-white"
       >
         Echte Arbeit. Echte Bäume.
       </motion.h2>
 
       <motion.p
         {...fadeUp(0.2)}
-        className="mt-6 text-[var(--cream)]/70 font-light max-w-xl mx-auto"
+        className="mt-6 text-[var(--cream)]/70 font-light max-w-lg mx-auto"
       >
         Eindrücke aus meinem Arbeitsalltag — vom Kletterseil bis zum
         Obstbaumschnitt im Piestingtal.
@@ -776,15 +799,12 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
   </motion.button>
 
 </div>
-
-   
   </div>
 </section>
 
-
 {/* VIDEO + ARBEITSALLTAG GRID */}
 
-<section className="relative py-24 px-6 bg-[linear-gradient(to_bottom,#16241D,#223328)] border-y border-white/5 overflow-hidden">
+<section className="relative py-16 md:py-24 px-6 bg-[linear-gradient(to_bottom,#16241D,#223328)] border-y border-white/5 overflow-hidden">
   <div className="mx-auto max-w-7xl">
 
 ```
@@ -794,7 +814,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
     Arbeitsalltag
   </p>
 
-  <h2 className="text-3xl md:text-5xl text-white">
+  <h2 className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em] text-white">
     Bewegte Einblicke.
   </h2>
 
@@ -811,24 +831,26 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 <motion.button
   {...fadeUp(0)}
   onClick={() => setActiveVideo(videoA)}
-  className="group relative overflow-hidden rounded-sm bg-black md:col-span-7 md:row-span-2 cursor-pointer"
+  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-7 md:row-span-2 cursor-pointer"
 >
   <video
     autoPlay
     muted
     loop
     playsInline
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   >
     <source src={videoA} type="video/mp4" />
   </video>
 
   {/* OVERLAY */}
-  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
+group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
+transition-all duration-500" />
 
   {/* PLAY BUTTON */}
   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20">
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
       <Play
         size={26}
         className="ml-1 text-white"
@@ -842,22 +864,24 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 <motion.button
   {...fadeUp(0.04)}
   onClick={() => setActiveVideo(videoB)}
-  className="group relative overflow-hidden rounded-sm bg-black md:col-span-5 md:row-span-3 cursor-pointer"
+  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-5 md:row-span-3 cursor-pointer"
 >
   <video
     autoPlay
     muted
     loop
     playsInline
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   >
     <source src={videoB} type="video/mp4" />
   </video>
 
-  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
+group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
+transition-all duration-500" />
 
   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20">
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
       <Play
         size={26}
         className="ml-1 text-white"
@@ -867,45 +891,47 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
   </div>
 </motion.button>
 
-  {/* SEILACTION */}
-  <motion.button
-    {...fadeUp(0.06)}
-    onClick={() => setWorkBox(1)}
-    className="group relative overflow-hidden rounded-sm md:col-span-4 md:row-span-2 cursor-zoom-in bg-black/20"
-  >
-    <img
-      src={seilaction_scharf}
-      alt="Seilklettertechnik in der Baumkrone"
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-    />
-  </motion.button>
-
-  {/* GRÜNFLÄCHE 1 */}
-  <motion.div
-    {...fadeUp(0.07)}
-    className="rounded-sm md:col-span-2 md:row-span-1 bg-gradient-to-br from-[#22382B] to-[#1B2A22]"
+{/* SEILACTION */}
+<motion.button
+  {...fadeUp(0.06)}
+  onClick={() => setWorkBox(1)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-4 md:row-span-2 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={seilaction_scharf}
+    alt="Seilklettertechnik in der Baumkrone"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   />
+</motion.button>
+
+{/* GRÜNFLÄCHE 1 */}
+<motion.div
+  {...fadeUp(0.07)}
+  className="rounded-[22px] md:col-span-2 md:row-span-1 bg-gradient-to-br from-[#22382B] to-[#1B2A22]"
+/>
 
 {/* VIDEO C */}
 <motion.button
   {...fadeUp(0.08)}
   onClick={() => setActiveVideo(videoC)}
-  className="group relative overflow-hidden rounded-sm bg-black md:col-span-3 md:row-span-2 cursor-pointer"
+  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-3 md:row-span-2 cursor-pointer"
 >
   <video
     autoPlay
     muted
     loop
     playsInline
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   >
     <source src={videoC} type="video/mp4" />
   </video>
 
-  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
+group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
+transition-all duration-500" />
 
   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20">
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
       <Play
         size={26}
         className="ml-1 text-white"
@@ -915,65 +941,67 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
   </div>
 </motion.button>
 
-  {/* RETTUNG */}
-  <motion.button
-    {...fadeUp(0.1)}
-    onClick={() => setWorkBox(2)}
-    className="group relative overflow-hidden rounded-sm md:col-span-2 md:row-span-1 cursor-zoom-in bg-black/20"
-  >
-    <img
-      src={rettung}
-      alt="Dokumentation eines Rettungseinsatzes"
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-    />
-  </motion.button>
+{/* RETTUNG */}
+<motion.button
+  {...fadeUp(0.1)}
+  onClick={() => setWorkBox(2)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-2 md:row-span-1 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={rettung}
+    alt="Dokumentation eines Rettungseinsatzes"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  />
+</motion.button>
 
-  {/* PRITSCHE */}
-  <motion.button
-    {...fadeUp(0.12)}
-    onClick={() => setWorkBox(3)}
-    className="group relative overflow-hidden rounded-sm md:col-span-5 md:row-span-1 cursor-zoom-in bg-black/20"
-  >
-    <img
-      src={pritsche_anhaenger}
-      alt="Transport und Arbeitsalltag"
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-    />
-  </motion.button>
+{/* PRITSCHE */}
+<motion.button
+  {...fadeUp(0.12)}
+  onClick={() => setWorkBox(3)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-5 md:row-span-1 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={pritsche_anhaenger}
+    alt="Transport und Arbeitsalltag"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  />
+</motion.button>
 
-  {/* HUBWAGEN */}
-  <motion.button
-    {...fadeUp(0.13)}
-    onClick={() => setWorkBox(4)}
-    className="group relative overflow-hidden rounded-sm md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
-  >
-    <img
-      src={dickerstamm_hubwagen}
-      alt="Großer Stamm beim Abtransport"
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-    />
-  </motion.button>
+{/* HUBWAGEN */}
+<motion.button
+  {...fadeUp(0.13)}
+  onClick={() => setWorkBox(4)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={dickerstamm_hubwagen}
+    alt="Großer Stamm beim Abtransport"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  />
+</motion.button>
 
 {/* VIDEO D */}
 <motion.button
   {...fadeUp(0.14)}
   onClick={() => setActiveVideo(videoD)}
-  className="group relative overflow-hidden rounded-sm bg-black md:col-span-6 md:row-span-2 cursor-pointer"
+  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-6 md:row-span-2 cursor-pointer"
 >
   <video
     autoPlay
     muted
     loop
     playsInline
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   >
     <source src={videoD} type="video/mp4" />
   </video>
 
-  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
+group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
+transition-all duration-500" />
 
   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20">
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
       <Play
         size={26}
         className="ml-1 text-white"
@@ -983,30 +1011,80 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
   </div>
 </motion.button>
 
-  {/* STIHL — groß & präsent */}
-  <motion.button
-    {...fadeUp(0.16)}
-    onClick={() => setWorkBox(0)}
-    className="group relative overflow-hidden rounded-sm md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
-  >
-    <img
-      src={stefanstihl_original}
-      alt="Arbeitsdetail mit Motorsäge"
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-    />
-  </motion.button>
+{/* STIHL — groß & präsent */}
+<motion.button
+  {...fadeUp(0.16)}
+  onClick={() => setWorkBox(0)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={stefanstihl_original}
+    alt="Arbeitsdetail mit Motorsäge"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  />
+</motion.button>
 
-  {/* GRÜNFLÄCHE 2 */}
-  <motion.div
-    {...fadeUp(0.17)}
-    className="rounded-sm md:col-span-3 md:row-span-1 bg-gradient-to-br from-[#2A4434] to-[#1E3126]"
+{/* GRÜNFLÄCHE 2 */}
+<motion.div
+  {...fadeUp(0.17)}
+  className="
+    relative overflow-hidden
+    rounded-[22px]
+    md:col-span-3 md:row-span-1
+    bg-gradient-to-br from-[#2A4434] to-[#1E3126]
+  "
+>
+
+  <img
+    src={logoWatermark}
+    alt=""
+    aria-hidden="true"
+    className="
+      absolute
+      right-[-40px]
+      top-1/2
+      -translate-y-1/2
+      w-[240px]
+      opacity-[0.12]
+      blur-[0.4px]
+      select-none
+      pointer-events-none
+    "
   />
 
-  {/* GRÜNFLÄCHE 3 */}
-  <motion.div
-    {...fadeUp(0.18)}
-    className="rounded-sm md:col-span-2 md:row-span-1 bg-gradient-to-br from-[#314D3C] to-[#22382B]"
+</motion.div>
+
+{/* GRÜNFLÄCHE 3 */}
+<motion.div
+  {...fadeUp(0.18)}
+  className="
+    relative overflow-hidden
+    rounded-[22px]
+    md:col-span-2 md:row-span-1
+    bg-gradient-to-br from-[#314D3C] to-[#22382B]
+  "
+>
+
+  <img
+    src={logoWatermark}
+    alt=""
+    aria-hidden="true"
+    className="
+      absolute
+      left-1/2
+      top-1/2
+      -translate-x-1/2
+      -translate-y-1/2
+      w-[160px]
+      opacity-[0.05]
+      blur-[0.5px]
+      rotate-[-8deg]
+      select-none
+      pointer-events-none
+    "
   />
+
+</motion.div>
 
 </div>
 
@@ -1097,12 +1175,12 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 {/* BEFORE / AFTER */}
 <section
   id="before-after"
-  className="relative py-28 md:py-36 px-6 bg-[linear-gradient(to_bottom,#263028,#343C34)] overflow-hidden"
+  className="relative py-20 md:py-28 px-6 bg-[linear-gradient(to_bottom,#263028,#343C34)] overflow-hidden"
 >
   <div className="mx-auto max-w-7xl">
 
     {/* HEADER */}
-    <div className="text-center mb-20">
+    <div className="text-center mb-14 md:mb-16">
 
       <motion.p
         {...fadeUp()}
@@ -1113,14 +1191,14 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
       <motion.h2
         {...fadeUp(0.1)}
-        className="text-4xl md:text-5xl text-white"
+        className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em] text-white"
       >
         Sichtbare Ergebnisse.
       </motion.h2>
 
       <motion.p
         {...fadeUp(0.2)}
-        className="mt-6 text-[var(--cream)]/70 font-light max-w-2xl mx-auto"
+        className="mt-6 text-[var(--cream)]/70 font-light max-w-xl mx-auto"
       >
         Fachgerechte Baumpflege bedeutet nicht nur Sicherheit —
         sondern auch langfristige Gesundheit und eine harmonische
@@ -1174,7 +1252,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
       {/* CONTACT */}
 <section
   id="kontakt"
-  className="relative py-32 md:py-40 px-6 overflow-hidden bg-[linear-gradient(to_bottom,#F5F2EA,#ECE7DC)]"
+  className="relative py-20 md:py-28 px-6 overflow-hidden bg-[linear-gradient(to_bottom,#F5F2EA,#ECE7DC)]"
 >
 
   {/* SOFT BACKGROUND GLOW */}
@@ -1194,7 +1272,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
       <motion.h2
         {...fadeUp(0.1)}
-        className="text-4xl md:text-6xl leading-[1.05] mb-10"
+        className="text-4xl md:text-[3.6rem] leading-[1.04] tracking-[-0.02em] leading-[1.05] mb-10"
       >
         Ich freue mich auf Ihre Anfrage
         <br />
@@ -1205,7 +1283,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
       <motion.p
         {...fadeUp(0.15)}
-        className="text-lg text-foreground/70 leading-relaxed font-light max-w-xl mb-12"
+        className="text-lg text-foreground/70 leading-relaxed font-light max-w-lg mb-12"
       >
         Ob Baumpflege, Schnitt, Kontrolle oder sichere Abtragung —
         ich nehme mir persönlich Zeit für Ihr Anliegen und berate Sie direkt vor Ort.
@@ -1436,7 +1514,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
             px-8 py-5
             bg-[linear-gradient(to_bottom_right,#203326,#16241D)]
             text-[var(--cream)]
-            text-sm tracking-[0.18em] uppercase
+            text-sm tracking-[0.14em] uppercase
             hover:scale-[1.015]
             hover:shadow-[0_18px_50px_rgba(0,0,0,0.18)]
             transition-all duration-500
@@ -1497,7 +1575,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
             rounded-full
 
             text-[14px]
-            tracking-[0.12em]
+            tracking-[0.14em]
 
             text-[var(--cream)]/88
             bg-white/[0.04]
@@ -1521,7 +1599,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
             rounded-full
 
             text-[14px]
-            tracking-[0.12em]
+            tracking-[0.14em]
 
             text-[var(--cream)]/88
             bg-white/[0.04]
@@ -1556,38 +1634,91 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    className="fixed inset-0 z-[120] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    className="
+      fixed inset-0 z-[120]
+      bg-black/72
+      backdrop-blur-xl
+      flex items-center justify-center
+      p-4 md:p-8
+    "
     onClick={() => setActiveVideo(null)}
   >
 
-    {/* CLOSE */}
+    {/* BACKGROUND ATMOSPHERE */}
+    <div className="absolute inset-0 overflow-hidden">
+      <video
+        src={activeVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="
+          w-full h-full
+          object-cover
+          blur-3xl
+          scale-110
+          opacity-[0.16]
+        "
+      />
+    </div>
+
+    {/* CLOSE BUTTON */}
     <button
       onClick={() => setActiveVideo(null)}
-      className="absolute top-6 right-6 z-10 h-12 w-12 rounded-full bg-white/10 border border-white/15 text-white text-2xl backdrop-blur-md hover:bg-white/20 transition-all"
+      aria-label="Video schließen"
+      className="
+        absolute top-5 right-5 md:top-8 md:right-8
+        z-20
+        h-12 w-12
+        rounded-full
+        bg-white/12
+        backdrop-blur-xl
+        border border-white/10
+        text-white/85
+        flex items-center justify-center
+        hover:bg-white/24
+        hover:text-white
+        transition-all duration-300
+      "
     >
       ✕
     </button>
 
-    {/* VIDEO */}
+    {/* VIDEO CONTAINER */}
     <motion.div
-      initial={{ scale: 0.92, opacity: 0 }}
+      initial={{ scale: 0.94, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.96, opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="w-full max-w-sm md:max-w-2xl"
+      exit={{ scale: 0.97, opacity: 0 }}
+      transition={{
+        duration: 0.42,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="
+        relative z-10
+        w-full max-w-[94vw] md:max-w-5xl
+      "
       onClick={(e) => e.stopPropagation()}
     >
+
       <video
         src={activeVideo}
         controls
         autoPlay
         playsInline
-        className="w-full rounded-2xl shadow-2xl"
+        className="
+          w-full
+          max-h-[82vh] md:max-h-[88vh]
+          rounded-[28px]
+          shadow-[0_40px_120px_rgba(0,0,0,0.45)]
+        "
       />
+
     </motion.div>
 
   </motion.div>
 )}
+
       {/* Legal overlay */}
       {overlay && (
         <motion.div

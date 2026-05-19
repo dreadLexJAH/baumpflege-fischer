@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, Menu, X } from "lucide-react";
 import logo from "../../assets/logo_certs/logo_transparent.png";
+import logoWatermark from "../../assets/logo_certs/logo_watermark.png";
 
 const navLinks = [
   { href: "#start", label: "Start" },
@@ -39,15 +40,15 @@ export function Header() {
         duration: 0.8,
         ease: "easeOut",
       }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-1 md:right-0 z-50 transition-all duration-500 ${
         open
-          ? "bg-transparent py-5"
+          ? "bg-transparent py-3"
           : scrolled
             ? "bg-[rgba(245,242,235,0.82)] backdrop-blur-[10px] border-b border-black/5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
-            : "bg-transparent py-5"
+            : "bg-transparent py-3"
       }`}
     >
-      <div className="relative mx-auto max-w-[1600px] px-4 md:px-8 flex items-center justify-center">
+      <div className="relative mx-auto max-w-[1100px] md:max-w-[1600px] px-3 md:px-8 flex items-center justify-center max-[489px]:justify-start">
 
         {/* DESKTOP NAV LEFT */}
         <nav className="hidden 2xl:flex flex-1 items-center gap-10 justify-end pr-12">
@@ -69,7 +70,7 @@ export function Header() {
         {/* LOGO BLOCK */}
         <a
           href="#start"
-          className={`relative z-10 shrink-0 flex items-center gap-3 sm:gap-4 rounded-full pl-2 pr-5 sm:pl-3 sm:pr-7 py-2 transition-all duration-500 ${
+          className={`relative z-10 flex items-center mx-auto max-[489px]:mx-0 gap-2 sm:gap-4 rounded-full pl-2 pr-5 sm:pl-4 sm:pr-10 py-2 transition-all duration-500 ${
             !open && scrolled
               ? "bg-white/70 backdrop-blur-[10px] ring-1 ring-black/5 shadow-[0_6px_22px_rgba(0,0,0,0.08)]"
               : "bg-white/[0.09] backdrop-blur-[2px] ring-1 ring-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.22)]"
@@ -79,7 +80,7 @@ export function Header() {
             src={logo}
             alt="Baumpflege Fischer Logo"
             animate={{
-              height: scrolled ? 56 : 78,
+              height: scrolled ? 46 : 56,
             }}
             transition={{
               duration: 0.5,
@@ -87,16 +88,16 @@ export function Header() {
             }}
             className="w-auto rounded-full opacity-90"
             style={{
-              height: scrolled ? 56 : 78,
+              height: scrolled ? 46 : 56,
               mixBlendMode: "normal",
             }}
           />
 
           <span
-            className={`font-serif tracking-wide leading-tight whitespace-nowrap transition-all duration-500 ${
+            className={`font-serif tracking-wide leading-tight whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-500 ${
               !open && scrolled
                 ? "text-[var(--forest-deep)] text-xl sm:text-2xl"
-                : "text-white text-2xl sm:text-3xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
+                : "text-white text-[1.6rem] sm:text-[2.4rem] lg:text-[2.8rem] drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
             }`}
             style={{
               fontFamily:
@@ -105,7 +106,7 @@ export function Header() {
               letterSpacing: "0.02em",
             }}
           >
-            Baumpflege Fischer
+            TEST HEADER
           </span>
         </a>
 
@@ -129,10 +130,10 @@ export function Header() {
         {/* BURGER */}
         <button
           onClick={() => setOpen(!open)}
-          className={`absolute right-4 md:right-8 2xl:hidden flex items-center justify-center w-14 h-14 rounded-2xl border transition-all duration-300 backdrop-blur-[10px] ${
+          className={`absolute right-3 md:right-8 top-1/2 -translate-y-1/2 2xl:hidden flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl border transition-all duration-300 backdrop-blur-[10px] ${
             !open && scrolled
               ? "bg-white/40 border-black/10 hover:bg-white/60"
-              : "bg-white/5 border-white/10 hover:bg-white/10"
+              : "bg-white/[0.04] border-white/8 hover:bg-white/[0.08]"
           }`}
           aria-label="Menü"
         >
@@ -144,7 +145,7 @@ export function Header() {
             />
           ) : (
             <Menu
-              size={34}
+              size={28}
               strokeWidth={1.8}
               className={!open && scrolled ? "text-[var(--forest-deep)]" : "text-white"}
             />
@@ -155,7 +156,7 @@ export function Header() {
 
       {/* CONTACT BAR */}
       <div
-        className={`hidden md:flex justify-center items-center flex-wrap gap-x-7 gap-y-2 text-[12px] mt-2 px-4 transition-all duration-500 ${
+        className={`hidden min-[900px]:flex justify-center items-center flex-wrap gap-x-7 gap-y-2 text-[11px] tracking-[0.04em] mt-2 px-4 transition-all duration-500 ${
           !open && scrolled
             ? "text-[var(--forest-deep)]/80"
             : "text-white/82"
@@ -198,28 +199,51 @@ export function Header() {
             onClick={() => setOpen(false)}
           />
 
-          {/* PANEL */}
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{
-              duration: 0.45,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              absolute right-0 top-0 h-screen
-              w-full sm:w-[420px]
-              bg-[#111915]/95
-              border-l border-white/10
-              shadow-2xl
-              backdrop-blur-2xl
-            "
-          >
-            <div className="flex flex-col h-full px-8 pt-32 pb-10">
+{/* PANEL */}
+<motion.div
+  initial={{ x: "100%" }}
+  animate={{ x: 0 }}
+  exit={{ x: "100%" }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    absolute right-0 top-0 h-screen
+    w-full sm:w-[420px]
+    bg-[#111915]/88
+    border-l border-white/10
+    shadow-2xl
+    backdrop-blur-[24px]
+  "
+>
 
-              {/* NAVIGATION */}
-              <nav className="flex flex-col gap-2">
+  {/* CLOSE BUTTON */}
+  <button
+    onClick={() => setOpen(false)}
+    aria-label="Menü schließen"
+    className="
+      absolute top-6 right-6
+      z-50
+      h-12 w-12
+      rounded-full
+      bg-white/10
+      backdrop-blur-xl
+      border border-white/10
+      flex items-center justify-center
+      text-white/80
+      hover:bg-white/20
+      hover:text-white
+      transition-all duration-300
+    "
+  >
+    <X size={26} strokeWidth={1.8} />
+  </button>
+
+  <div className="flex flex-col h-full px-8 pt-32 pb-10">
+
+    {/* NAVIGATION */}
+    <nav className="flex flex-col gap-3 items-center text-center">
 
                 {navLinks.map((l, i) => (
                   <motion.a
@@ -231,9 +255,11 @@ export function Header() {
                     transition={{ delay: 0.05 * i }}
                     className="
                       group relative overflow-hidden
-                      rounded-2xl px-5 py-4
-                      text-[24px]
-                      tracking-wide
+                      rounded-2xl px-8 py-4 w-full max-w-[320px]
+                      text-[1.85rem]
+tracking-[-0.015em]
+leading-[1.02]
+font-[350]
                       text-white/88
                       transition-all duration-300
                       hover:bg-white/8
@@ -259,30 +285,60 @@ export function Header() {
 
               </nav>
 
-              {/* FOOTER */}
-              <div className="mt-auto pt-10 border-t border-white/10">
+{/* FOOTER */}
+<div className="mt-auto flex flex-col items-center pt-24">
 
-                <div className="space-y-4 text-sm text-white/65">
+  {/* DIVIDER */}
+  <div className="w-full border-t border-white/[0.06]" />
 
-                  <a
-                    href="tel:+436765096778"
-                    className="flex items-center gap-3 hover:text-white transition-colors"
-                  >
-                    <Phone size={16} />
-                    <span>+43 676 50 96 778</span>
-                  </a>
+  {/* WATERMARK */}
+  <img
+    src={logoWatermark}
+    alt=""
+    aria-hidden="true"
+    className="
+      mt-10
+      w-[220px]
+      opacity-[0.15]
+      mix-blend-soft-light
+      pointer-events-none
+      select-none
+    "
+  />
 
-                  <a
-                    href="mailto:office@baumpflegefischer.at"
-                    className="flex items-center gap-3 hover:text-white transition-colors"
-                  >
-                    <Mail size={16} />
-                    <span>office@baumpflegefischer.at</span>
-                  </a>
+  {/* CONTACT */}
+  <div className="mt-10 flex flex-col items-center text-center">
 
-                </div>
+    <a
+      href="tel:+436765096778"
+      className="
+        text-[14px]
+        tracking-[0.05em]
+        text-white/68
+        hover:text-white
+        transition-colors
+      "
+    >
+      +43 676 50 96 778
+    </a>
 
-              </div>
+    <a
+      href="mailto:office@baumpflegefischer.at"
+      className="
+        mt-4
+        text-[13px]
+        tracking-[0.03em]
+        text-white/46
+        hover:text-white
+        transition-colors
+      "
+    >
+      office@baumpflegefischer.at
+    </a>
+
+  </div>
+
+</div>
             </div>
           </motion.div>
         </motion.div>

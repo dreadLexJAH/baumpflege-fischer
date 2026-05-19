@@ -10,15 +10,24 @@ interface Props {
   onNext: () => void;
 }
 
-export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
+export function Lightbox({
+  images,
+  index,
+  onClose,
+  onPrev,
+  onNext,
+}: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (index === null) return;
+
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") onPrev();
       if (e.key === "ArrowRight") onNext();
     };
+
     window.addEventListener("keydown", onKey);
+
     return () => window.removeEventListener("keydown", onKey);
   }, [index, onClose, onPrev, onNext]);
 
@@ -29,38 +38,140 @@ export function Lightbox({ images, index, onClose, onPrev, onNext }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-black/92 backdrop-blur-sm flex items-center justify-center p-4"
+          transition={{ duration: 0.42, ease: "easeOut" }}
+          className="
+            fixed inset-0 z-[100]
+            bg-black/72
+            backdrop-blur-xl
+            flex items-center justify-center
+            p-4 md:p-8
+          "
           onClick={onClose}
         >
-          <button onClick={onClose} className="absolute top-6 right-6 text-white/80 hover:text-white p-2" aria-label="Schließen">
-            <X size={28} />
-          </button>
+          {/* BACKGROUND ATMOSPHERE */}
+          <motion.img
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 0.18, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            src={images[index].src}
+            alt=""
+            className="
+              absolute inset-0
+              w-full h-full
+              object-cover
+              blur-3xl
+              scale-110
+            "
+          />
+
+          {/* CLOSE BUTTON */}
           <button
-            onClick={(e) => { e.stopPropagation(); onPrev(); }}
-            className="absolute left-4 md:left-8 text-white/80 hover:text-white p-3"
-            aria-label="Vorheriges"
+            onClick={onClose}
+            aria-label="Schließen"
+            className="
+              absolute top-5 right-5 md:top-8 md:right-8
+              z-20
+              h-12 w-12
+              rounded-full
+              bg-white/12
+              backdrop-blur-xl
+              border border-white/10
+              text-white/85
+              flex items-center justify-center
+              hover:bg-white/24
+              hover:text-white
+              transition-all duration-300
+            "
           >
-            <ChevronLeft size={36} />
+            <X size={24} />
           </button>
+
+          {/* PREV BUTTON */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onPrev();
+            }}
+            aria-label="Vorheriges"
+            className="
+              absolute left-3 md:left-6
+              z-20
+              h-12 w-12
+              rounded-full
+              bg-white/10
+              backdrop-blur-xl
+              border border-white/10
+              text-white/80
+              flex items-center justify-center
+              hover:bg-white/20
+              hover:text-white
+              transition-all duration-300
+            "
+          >
+            <ChevronLeft size={28} />
+          </button>
+
+          {/* MAIN IMAGE */}
           <motion.img
             key={index}
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.42, ease: "easeOut" }}
             src={images[index].src}
             alt={images[index].alt}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[85vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"
+            className="
+              relative z-10
+              max-w-[92vw]
+              max-h-[88vh]
+              object-contain
+              rounded-[28px]
+              shadow-[0_40px_120px_rgba(0,0,0,0.45)]
+            "
           />
+
+          {/* NEXT BUTTON */}
           <button
-            onClick={(e) => { e.stopPropagation(); onNext(); }}
-            className="absolute right-4 md:right-8 text-white/80 hover:text-white p-3"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNext();
+            }}
             aria-label="Nächstes"
+            className="
+              absolute right-3 md:right-6
+              z-20
+              h-12 w-12
+              rounded-full
+              bg-white/10
+              backdrop-blur-xl
+              border border-white/10
+              text-white/80
+              flex items-center justify-center
+              hover:bg-white/20
+              hover:text-white
+              transition-all duration-300
+            "
           >
-            <ChevronRight size={36} />
+            <ChevronRight size={28} />
           </button>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-widest">
+
+          {/* COUNTER */}
+          <div
+            className="
+              absolute bottom-5 md:bottom-8
+              left-1/2 -translate-x-1/2
+              z-20
+              px-4 py-2
+              rounded-full
+              bg-white/10
+              backdrop-blur-xl
+              border border-white/10
+              text-white/75
+              text-xs tracking-[0.3em]
+            "
+          >
             {index + 1} / {images.length}
           </div>
         </motion.div>
