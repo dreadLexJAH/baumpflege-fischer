@@ -27,11 +27,15 @@ import bigtree from "./assets/signature_gallery/bigtree.jpg";
 import glashausdone from "./assets/signature_gallery/glashausdone.jpg";
 import baumpflege_gutenstein from "./assets/signature_gallery/baumpflegefischer_gutenstein.jpg";
 import stammdurch from "./assets/signature_gallery/stammdurch_optimized.png";
+import pritscheanhaengerOpt from "./assets/dokumentarisch/pritscheanhaengerOpt.jpg";
+import pritschewerkzeugOpt from "./assets/dokumentarisch/pritschewerkzeugOpt.jpg";
+import jungbaumOpt from "./assets/before_after/jungbaumOpt.jpg";
 
 import videoA from "./assets/videos/signal-2023-08-30-11-42-12-462-1.mp4";
 import videoB from "./assets/videos/signal-2023-02-02-14-50-00-903.mp4";
 import videoC from "./assets/videos/5c705ec1-e933-43e9-a8b5-6619346c60d0 2.MP4";
 import videoD from "./assets/videos/signal-2024-05-22-19-58-38-417.mp4";
+import eschenabtragungVideo from "./assets/videos/eschenabtragung_web.mp4";
 
 import apfelBefore from "./assets/before_after/Apfelbaum_vorher.jpg";
 import apfelAfter from "./assets/before_after/apfelbaum_nachher.jpg";
@@ -91,8 +95,12 @@ const workImages = [
     alt: "Dokumentation eines Rettungseinsatzes",
   },
   {
-    src: pritsche_anhaenger,
-    alt: "Transport und Arbeitsalltag",
+      src: pritscheanhaengerOpt,
+      alt: "Pritsche mit Anhänger",
+    },
+  {
+      src: pritschewerkzeugOpt,
+      alt: "Arbeitsalltag und Ausrüstung",
   },
   {
     src: dickerstamm_hubwagen,
@@ -804,7 +812,7 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
 
 {/* VIDEO + ARBEITSALLTAG GRID */}
 
-<section className="relative py-16 md:py-24 px-6 bg-[linear-gradient(to_bottom,#16241D,#223328)] border-y border-white/5 overflow-hidden">
+<section className="relative py-16 md:py-20 px-6 bg-[linear-gradient(to_bottom,#16241D,#223328)] border-y border-white/5 overflow-hidden">
   <div className="mx-auto max-w-7xl">
 
 ```
@@ -904,11 +912,18 @@ transition-all duration-500" />
   />
 </motion.button>
 
-{/* GRÜNFLÄCHE 1 */}
-<motion.div
+{/* PRITSCHE WERKZEUG */}
+<motion.button
   {...fadeUp(0.07)}
-  className="rounded-[22px] md:col-span-2 md:row-span-1 bg-gradient-to-br from-[#22382B] to-[#1B2A22]"
-/>
+  onClick={() => setWorkBox(4)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-2 md:row-span-1 cursor-zoom-in bg-black/20"
+>
+  <img
+    src={pritschewerkzeugOpt}
+    alt="Arbeitsalltag und Ausrüstung"
+    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  />
+</motion.button>
 
 {/* VIDEO C */}
 <motion.button
@@ -961,8 +976,8 @@ transition-all duration-500" />
   className="group relative overflow-hidden rounded-[22px] md:col-span-5 md:row-span-1 cursor-zoom-in bg-black/20"
 >
   <img
-    src={pritsche_anhaenger}
-    alt="Transport und Arbeitsalltag"
+    src={pritscheanhaengerOpt}
+    alt="Pritsche mit Anhänger"
     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
   />
 </motion.button>
@@ -970,7 +985,7 @@ transition-all duration-500" />
 {/* HUBWAGEN */}
 <motion.button
   {...fadeUp(0.13)}
-  onClick={() => setWorkBox(4)}
+  onClick={() => setWorkBox(5)}
   className="group relative overflow-hidden rounded-[22px] md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
 >
   <img
@@ -1054,37 +1069,33 @@ transition-all duration-500" />
 
 </motion.div>
 
-{/* GRÜNFLÄCHE 3 */}
-<motion.div
+{/* ESCHENABTRAGUNG */}
+<motion.button
   {...fadeUp(0.18)}
-  className="
-    relative overflow-hidden
-    rounded-[22px]
-    md:col-span-2 md:row-span-1
-    bg-gradient-to-br from-[#314D3C] to-[#22382B]
-  "
+  onClick={() => setActiveVideo(eschenabtragungVideo)}
+  className="group relative overflow-hidden rounded-[22px] md:col-span-2 md:row-span-1 bg-black cursor-pointer"
 >
+  <video
+    muted
+    playsInline
+    preload="metadata"
+    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+  >
+    <source src={eschenabtragungVideo} type="video/mp4" />
+  </video>
 
-  <img
-    src={logoWatermark}
-    alt=""
-    aria-hidden="true"
-    className="
-      absolute
-      left-1/2
-      top-1/2
-      -translate-x-1/2
-      -translate-y-1/2
-      w-[160px]
-      opacity-[0.05]
-      blur-[0.5px]
-      rotate-[-8deg]
-      select-none
-      pointer-events-none
-    "
-  />
+  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-500" />
 
-</motion.div>
+  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
+      <Play
+        size={20}
+        className="ml-0.5 text-white"
+        fill="white"
+      />
+    </div>
+  </div>
+</motion.button>
 
 </div>
 
@@ -1092,7 +1103,7 @@ transition-all duration-500" />
 <div className="md:hidden mt-10 space-y-4">
 
   {/* VIDEOS */}
-  {[videoA, videoB, videoC, videoD].map((video, i) => (
+  {[videoA, videoB, videoC, videoD, eschenabtragungVideo].map((video, i) => (
     <motion.button
       key={i}
       {...fadeUp(i * 0.05)}
@@ -1136,14 +1147,19 @@ transition-all duration-500" />
         index: 2,
       },
       {
-        src: pritsche_anhaenger,
-        alt: "Transport und Arbeitsalltag",
+        src: pritscheanhaengerOpt,
+        alt: "Pritsche mit Anhänger",
         index: 3,
+      },
+      {
+        src: pritschewerkzeugOpt,
+        alt: "Arbeitsalltag und Ausrüstung",
+        index: 4,
       },
       {
         src: dickerstamm_hubwagen,
         alt: "Großer Stamm beim Abtransport",
-        index: 4,
+        index: 5,
       },
       {
         src: stefanstihl_original,
@@ -1171,11 +1187,57 @@ transition-all duration-500" />
   </div>
 </section>
 
+{/* JUNGBAUMPFLANZUNG */}
+<section className="relative py-16 md:py-20 px-6 bg-[#2E3730] overflow-hidden">
+
+  <div className="mx-auto max-w-xl">
+
+    <div className="text-center mb-12">
+
+      <motion.p
+        {...fadeUp()}
+        className="text-[var(--cream)]/60 tracking-[0.3em] text-xs uppercase mb-5"
+      >
+        Jungbaumpflanzung
+      </motion.p>
+
+      <motion.h2
+        {...fadeUp(0.08)}
+        className="text-4xl md:text-[3.2rem] leading-[1.04] tracking-[-0.02em] text-white"
+      >
+        Fachgerecht gepflanzt.
+      </motion.h2>
+
+      <motion.p
+        {...fadeUp(0.16)}
+        className="mt-6 text-[var(--cream)]/70 font-light max-w-2xl mx-auto"
+      >
+        Fachgerechte Pflanzung inklusive Bodenvorbereitung
+        und Verankerung für einen gesunden Start junger Bäume.
+      </motion.p>
+
+    </div>
+
+    <motion.div
+      {...fadeUp(0.24)}
+      className="overflow-hidden rounded-[24px] shadow-2xl"
+    >
+      <img
+        src={jungbaumOpt}
+        alt="Jungbaumpflanzung"
+        className="w-full h-auto object-cover"
+      />
+    </motion.div>
+
+  </div>
+
+</section>
+
 
 {/* BEFORE / AFTER */}
 <section
   id="before-after"
-  className="relative py-20 md:py-28 px-6 bg-[linear-gradient(to_bottom,#263028,#343C34)] overflow-hidden"
+  className="relative py-16 md:py-20 px-6 bg-[linear-gradient(to_bottom,#263028,#343C34)] overflow-hidden"
 >
   <div className="mx-auto max-w-7xl">
 

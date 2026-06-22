@@ -1,0 +1,20 @@
+{
+  src: pritscheanhaengerOpt,
+  alt: "Pritsche mit Anhänger",
+  index: 3,
+},
+{
+  src: pritschewerkzeugOpt,
+  alt: "Arbeitsalltag und Ausrüstung",
+  index: 4,
+},
+{
+  src: dickerstamm_hubwagen,
+  alt: "Großer Stamm beim Abtransport",
+  index: 5,
+},
+{
+  src: stefanstihl_original,
+  alt: "Arbeitsdetail mit Motorsäge",
+  index: 0,
+},

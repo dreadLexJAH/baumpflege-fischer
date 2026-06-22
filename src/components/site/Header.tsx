@@ -56,7 +56,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-[15px] tracking-[0.02em] transition-colors hover:text-[var(--forest)] ${
+              className={`text-[15px] tracking-[0.02em] transition-all duration-300 hover:underline hover:underline-offset-4 ${
                 !open && scrolled
                   ? "text-[var(--forest-deep)]"
                   : "text-white/90 drop-shadow"
@@ -116,7 +116,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-[15px] tracking-[0.02em] transition-colors hover:text-[var(--forest)] ${
+              className={`text-[15px] tracking-[0.02em] transition-all duration-300 hover:underline hover:underline-offset-4 ${
                 !open && scrolled
                   ? "text-[var(--forest-deep)]"
                   : "text-white/90 drop-shadow"
@@ -211,7 +211,7 @@ export function Header() {
   className="
     absolute right-0 top-0 h-screen
     w-full sm:w-[420px]
-    bg-[#111915]/88
+    bg-[#1B2A22]/88
     border-l border-white/10
     shadow-2xl
     backdrop-blur-[24px]
