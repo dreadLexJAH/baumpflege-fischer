@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, Menu, X } from "lucide-react";
 import logo from "../../assets/logo_certs/logo_header1.png";
+import logoHero from "../../assets/logo_certs/logo_hero.png";
 import logoWatermark from "../../assets/logo_certs/logo_watermark.png";
 
 const navLinks = [
@@ -77,7 +78,7 @@ export function Header() {
           }`}
         >
           <motion.img
-            src={logo}
+            src={scrolled ? logo : logoHero}
             alt="Baumpflege Fischer Logo"
             animate={{
               height: scrolled ? 46 : 56,
