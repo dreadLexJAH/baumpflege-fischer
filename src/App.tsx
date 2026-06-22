@@ -318,7 +318,7 @@ export default function App() {
       y: heroTextY,
       opacity: heroOpacity,
     }}
-    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6 pt-36 md:pt-52 pb-24 md:pb-28"
+    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6 pt-28 md:pt-40 pb-24 md:pb-28"
   >
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -391,37 +391,37 @@ whitespace-pre-line
   </motion.div>
 
   {/* TRUST STRIP */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 1 }}
-    className="relative z-20 -mt-10 md:-mt-16"
-  >
-    <div className="mx-auto max-w-6xl px-6 py-4 md:py-5 grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
-      {trust.map((t) => (
-        <div
-          key={t.label}
-          className="flex items-center gap-3 text-white/90 text-sm md:text-[15px]"
-        >
-          <t.icon
-            size={18}
-            className="text-[var(--cream)] shrink-0"
-            strokeWidth={1.5}
-          />
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 1 }}
+  className="relative z-20"
+>
+  <div className="mx-auto max-w-6xl px-6 py-4 md:py-5 grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
+    {trust.map((t) => (
+      <div
+        key={t.label}
+        className="flex items-center gap-3 text-white/90 text-sm md:text-[15px]"
+      >
+        <t.icon
+          size={18}
+          className="text-[var(--cream)] shrink-0"
+          strokeWidth={1.5}
+        />
 
-          <span className="tracking-wide leading-snug">
-            {t.label}
-          </span>
-        </div>
-      ))}
-    </div>
-  </motion.div>
+        <span className="tracking-wide leading-snug">
+          {t.label}
+        </span>
+      </div>
+    ))}
+  </div>
+</motion.div>
 
   {/* SCROLL INDICATOR */}
   <motion.div
     animate={{ y: [0, 8, 0] }}
     transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-    className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-10 text-white/82"
+    className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/82"
   >
     <ChevronDown size={22} />
   </motion.div>
