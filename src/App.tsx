@@ -315,7 +315,7 @@ export default function App() {
       y: heroTextY,
       opacity: heroOpacity,
     }}
-    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6 pt-28 md:pt-40 pb-24 md:pb-28"
+    className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6 pt-40 md:pt-52 pb-32 md:pb-44"
   >
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -384,24 +384,22 @@ whitespace-pre-line
         </a>
 
       </div>
-    </motion.div>
-  </motion.div>
 
-  {/* TRUST STRIP */}
+{/* TRUST STRIP */}
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1, delay: 1 }}
-  className="relative z-20"
+  className="mt-12 md:mt-16 w-full"
 >
-  <div className="mx-auto max-w-6xl px-6 py-4 md:py-5 grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
+  <div className="mx-auto max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-8">
     {trust.map((t) => (
       <div
         key={t.label}
-        className="flex items-center gap-3 text-white/90 text-sm md:text-[15px]"
+        className="flex items-center justify-center gap-3 text-white/90 text-sm md:text-[15px]"
       >
         <t.icon
-          size={18}
+          size={18} 
           className="text-[var(--cream)] shrink-0"
           strokeWidth={1.5}
         />
@@ -413,6 +411,9 @@ whitespace-pre-line
     ))}
   </div>
 </motion.div>
+
+    </motion.div>
+  </motion.div>
 
   {/* SCROLL INDICATOR */}
   <motion.div
