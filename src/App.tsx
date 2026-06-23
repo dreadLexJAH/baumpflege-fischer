@@ -8,7 +8,7 @@ Play,
 import { Header } from "./components/site/Header";
 import { Lightbox } from "./components/site/Lightbox";
 import hero from "./assets/hero_ubermich/hero_breit_v1_optimized.jpg";
-import owner from "./assets/hero_ubermich/owner_final_ersatz.png";
+import owner from "./assets/hero_ubermich/owner_newOpt.png";
 import logo from "./assets/logo_certs/logo_transparent.png";
 import logoWatermark from "./assets/logo_certs/logo_watermark.png";
 import maibaum from "./assets/signature_gallery/maibaum.JPG";
@@ -95,14 +95,6 @@ const workImages = [
     alt: "Dokumentation eines Rettungseinsatzes",
   },
   {
-      src: pritscheanhaengerOpt,
-      alt: "Pritsche mit Anhänger",
-    },
-  {
-      src: pritschewerkzeugOpt,
-      alt: "Arbeitsalltag und Ausrüstung",
-  },
-  {
     src: dickerstamm_hubwagen,
     alt: "Großer Stamm beim Abtransport",
   },
@@ -112,17 +104,22 @@ const beforeAfterItems = [
   {
     before: apfelBefore,
     after: apfelAfter,
-    title: "Obstbaumschnitt",
+    title: "",
   },
   {
     before: glashausBefore,
     after: glashausAfter,
-    title: "Baumpflege beim Glashaus",
+    title: "",
   },
   {
     before: wipfelBefore,
     after: wipfelAfter,
-    title: "Kronenpflege",
+    title: "",
+  },
+  {
+    before: pritscheanhaengerOpt,
+    after: pritschewerkzeugOpt,
+    title: "",
   },
 ];
 
@@ -241,11 +238,6 @@ function BeforeAfterSlider({
         </div>
 
       </div>
-
-      <h3 className="text-xl md:text-2xl text-white">
-        {title}
-      </h3>
-
     </div>
   );
 }
@@ -294,13 +286,18 @@ export default function App() {
 
   {/* PARALLAX IMAGE */}
   <motion.div
-    style={{ y: heroY }}
-    className="absolute inset-0 scale-[1.08]"
-  >
+  style={{ y: heroY }}
+  className="absolute inset-0 scale-[1.08]"
+>
     <img
-      src={hero}
-      alt="Baumpflege mit Blick auf den wunderschönen Schneeberg"
-      className="absolute inset-0 w-full h-full object-cover object-center"
+  src={hero}
+  alt="Baumpflege mit Blick auf den wunderschönen Schneeberg"
+  className="
+    absolute inset-0 w-full h-full
+    object-cover
+    object-[48%_center]
+    md:object-center
+  "
       loading="eager"
       fetchPriority="high"
       decoding="async"
@@ -425,7 +422,6 @@ whitespace-pre-line
   >
     <ChevronDown size={22} />
   </motion.div>
-
 </section>
 
       {/* INTRO */}
@@ -438,20 +434,48 @@ whitespace-pre-line
             Ihr Spezialist in Sachen <em className="italic text-[var(--forest)]">Baumpflege</em>.
           </motion.h2>
           <motion.p {...fadeUp(0.2)} className="mt-8 text-muted-foreground text-lg leading-relaxed font-light">
-            Seit vielen Jahren pflanze, pflege und fälle ich Bäume im Piestingtal und in der gesamten Region vom Gletscher bis zum Steppensee. Jede Arbeit beginnt mit einem genauen Blick — und einer kostenlosen Besichtigung vor Ort.
+            Seit vielen Jahren pflanze, pflege und fälle ich Bäume im Piestingtal und in der gesamten Region vom Schneeberg bis zum Steppensee. Jede Arbeit beginnt mit einem genauen Blick — und einer kostenlosen Besichtigung vor Ort.
           </motion.p>
         </div>
-        <motion.figure
-          {...fadeUp(0.3)}
-          className="mx-auto max-w-5xl mt-9 md:mt-12 overflow-hidden rounded-2xl shadow-[0_20px_60px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5"
-        >
-          <img
-            src={introMountain}
-            alt="Baumpfleger im Baum mit Blick auf das verschneite Schneeberg-Massiv im Piestingtal"
-            loading="lazy"
-            className="w-full h-auto object-cover"
-          />
-        </motion.figure>
+
+        <motion.div
+  {...fadeUp(0.3)}
+  className="
+    relative
+    left-1/2
+    right-1/2
+    -ml-[50vw]
+    -mr-[50vw]
+    w-screen
+    h-[45vh]
+    md:h-[65vh]
+    overflow-hidden
+    mt-10
+    md:mt-14
+  "
+>
+<motion.img
+  src={introMountain}
+  alt="Die Schönheit der Natur bei der Baumpflege in Österreich"
+  loading="lazy"
+  initial={{ scale: 1.02 }}
+  animate={{ scale: 1.12 }}
+  transition={{
+    duration: 35,
+    ease: "linear",
+  }}
+  className="
+    absolute
+    inset-0
+    w-full
+    h-full
+    object-cover
+  "
+/>
+
+  <div className="absolute inset-0 bg-black/10" />
+</motion.div>
+
       </section>
 
   {/* SERVICES */}
@@ -825,11 +849,6 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
   <h2 className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em] text-white">
     Bewegte Einblicke.
   </h2>
-
-  <p className="mt-6 text-[var(--cream)]/70 font-light max-w-2xl mx-auto">
-    Ruhige Eindrücke echter Arbeit — direkt aus dem Alltag der
-    Baumpflege Fischer.
-  </p>
 </motion.div>
 
 {/* ORGANIC GRID */}
@@ -912,49 +931,34 @@ transition-all duration-500" />
   />
 </motion.button>
 
-{/* PRITSCHE WERKZEUG */}
-<motion.button
-  {...fadeUp(0.07)}
-  onClick={() => setWorkBox(4)}
-  className="group relative overflow-hidden rounded-[22px] md:col-span-2 md:row-span-1 cursor-zoom-in bg-black/20"
+{/* GRÜNFLÄCHE MITTE */}
+<motion.div
+  {...fadeUp(0.08)}
+  className="
+    relative overflow-hidden
+    rounded-[28px]
+    md:col-span-3 md:row-span-2
+    bg-gradient-to-br from-[#2A4434] to-[#1E3126]
+  "
 >
   <img
-    src={pritschewerkzeugOpt}
-    alt="Arbeitsalltag und Ausrüstung"
-    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+    src={logoWatermark}
+    alt=""
+    aria-hidden="true"
+    className="
+      absolute
+     left-1/2
+top-1/2
+-translate-x-1/2
+-translate-y-1/2
+w-[380px]
+opacity-[0.16]
+      blur-[0.4px]
+      select-none
+      pointer-events-none
+    "
   />
-</motion.button>
-
-{/* VIDEO C */}
-<motion.button
-  {...fadeUp(0.08)}
-  onClick={() => setActiveVideo(videoC)}
-  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-3 md:row-span-2 cursor-pointer"
->
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
-  >
-    <source src={videoC} type="video/mp4" />
-  </video>
-
-  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
-group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
-transition-all duration-500" />
-
-  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
-      <Play
-        size={26}
-        className="ml-1 text-white"
-        fill="white"
-      />
-    </div>
-  </div>
-</motion.button>
+</motion.div>
 
 {/* RETTUNG */}
 <motion.button
@@ -969,23 +973,10 @@ transition-all duration-500" />
   />
 </motion.button>
 
-{/* PRITSCHE */}
-<motion.button
-  {...fadeUp(0.12)}
-  onClick={() => setWorkBox(3)}
-  className="group relative overflow-hidden rounded-[22px] md:col-span-5 md:row-span-1 cursor-zoom-in bg-black/20"
->
-  <img
-    src={pritscheanhaengerOpt}
-    alt="Pritsche mit Anhänger"
-    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
-  />
-</motion.button>
-
 {/* HUBWAGEN */}
 <motion.button
   {...fadeUp(0.13)}
-  onClick={() => setWorkBox(5)}
+  onClick={() => setWorkBox(3)}
   className="group relative overflow-hidden rounded-[22px] md:col-span-3 md:row-span-2 cursor-zoom-in bg-black/20"
 >
   <img
@@ -1073,14 +1064,16 @@ transition-all duration-500" />
 <motion.button
   {...fadeUp(0.18)}
   onClick={() => setActiveVideo(eschenabtragungVideo)}
-  className="group relative overflow-hidden rounded-[22px] md:col-span-2 md:row-span-1 bg-black cursor-pointer"
+  className="group relative overflow-hidden rounded-[22px] md:col-span-8 md:row-span-2 bg-black cursor-pointer"
 >
-  <video
-    muted
-    playsInline
-    preload="metadata"
-    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
-  >
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+>
     <source src={eschenabtragungVideo} type="video/mp4" />
   </video>
 
@@ -1091,6 +1084,40 @@ transition-all duration-500" />
       <Play
         size={20}
         className="ml-0.5 text-white"
+        fill="white"
+      />
+    </div>
+  </div>
+</motion.button>
+
+{/* VIDEO C */}
+<motion.button
+  {...fadeUp(0.08)}
+  onClick={() => setActiveVideo(videoC)}
+  className="group relative overflow-hidden rounded-[28px] bg-black md:col-span-4 md:row-span-2 cursor-pointer"
+>
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+>
+    <source src={videoC} type="video/mp4" />
+  </video>
+
+  <div
+    className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.10),rgba(0,0,0,0.02))]
+    group-hover:bg-[linear-gradient(to_top,rgba(0,0,0,0.52),rgba(0,0,0,0.08))]
+    transition-all duration-500"
+  />
+
+  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/12 backdrop-blur-md border border-white/10">
+      <Play
+        size={26}
+        className="ml-1 text-white"
         fill="white"
       />
     </div>
@@ -1147,19 +1174,9 @@ transition-all duration-500" />
         index: 2,
       },
       {
-        src: pritscheanhaengerOpt,
-        alt: "Pritsche mit Anhänger",
-        index: 3,
-      },
-      {
-        src: pritschewerkzeugOpt,
-        alt: "Arbeitsalltag und Ausrüstung",
-        index: 4,
-      },
-      {
         src: dickerstamm_hubwagen,
         alt: "Großer Stamm beim Abtransport",
-        index: 5,
+        index: 3,
       },
       {
         src: stefanstihl_original,
@@ -1207,15 +1224,6 @@ transition-all duration-500" />
       >
         Fachgerecht gepflanzt.
       </motion.h2>
-
-      <motion.p
-        {...fadeUp(0.16)}
-        className="mt-6 text-[var(--cream)]/70 font-light max-w-2xl mx-auto"
-      >
-        Fachgerechte Pflanzung inklusive Bodenvorbereitung
-        und Verankerung für einen gesunden Start junger Bäume.
-      </motion.p>
-
     </div>
 
     <motion.div
@@ -1257,16 +1265,6 @@ transition-all duration-500" />
       >
         Sichtbare Ergebnisse.
       </motion.h2>
-
-      <motion.p
-        {...fadeUp(0.2)}
-        className="mt-6 text-[var(--cream)]/70 font-light max-w-xl mx-auto"
-      >
-        Fachgerechte Baumpflege bedeutet nicht nur Sicherheit —
-        sondern auch langfristige Gesundheit und eine harmonische
-        Erscheinung Ihrer Bäume.
-      </motion.p>
-
     </div>
 
     {/* LAYOUT */}
@@ -1302,12 +1300,26 @@ transition-all duration-500" />
       before={beforeAfterItems[2].before}
       after={beforeAfterItems[2].after}
       title={beforeAfterItems[2].title}
-      aspect="aspect-[3/5]"
+      aspect="aspect-[3/5.31]"
     />
 
   </motion.div>
 
 </div>
+
+{/* PRITSCHE VOLLBREITE */}
+<motion.div
+  {...fadeUp(0.16)}
+  className="mt-8"
+>
+  <BeforeAfterSlider
+    before={beforeAfterItems[3].before}
+    after={beforeAfterItems[3].after}
+    title={beforeAfterItems[3].title}
+    aspect="aspect-[16/7]"
+  />
+</motion.div>
+
   </div>
 </section>
 
@@ -1803,7 +1815,7 @@ transition-all duration-500" />
                   <p><strong className="text-foreground">Baumpflege Fischer</strong></p>
                   <p>Inhaber: Hr. Fischer<br/>2770 Gutenstein, Niederösterreich</p>
                   <p>Tel: +43 676 50 96 778<br/>E-Mail: office@baumpflegefischer.at</p>
-                  <p>UID-Nr.: ATU XXXXXXXX<br/>Mitglied der WKO Niederösterreich</p>
+                  <p>UID-Nr.: ATU81783045<br/>Mitglied der WKO Niederösterreich</p>
                 </>
               ) : (
                 <>
