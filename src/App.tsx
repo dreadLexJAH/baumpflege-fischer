@@ -295,7 +295,7 @@ export default function App() {
   className="
     absolute inset-0 w-full h-full
     object-cover
-    object-[48%_center]
+    object-[40%_center]
     md:object-center
   "
       loading="eager"
@@ -305,9 +305,9 @@ export default function App() {
   </motion.div>
 
   {/* CINEMATIC OVERLAY */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.38)_58%,rgba(0,0,0,0.72)_100%)]" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.06)_0%,rgba(0,0,0,0.22)_58%,rgba(0,0,0,0.48)_100%)]" />
 
-  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/70" />
+  <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/10 to-black/55" />
 
   {/* HERO CONTENT */}
   <motion.div
@@ -371,7 +371,20 @@ whitespace-pre-line
 
         <a
           href="#kontakt"
-          className="px-10 py-5 bg-[var(--cream)] text-[var(--forest-deep)] text-sm tracking-[0.14em] uppercase hover:bg-white transition-all duration-300 hover:scale-[1.02]"
+          className="
+          px-8 py-4
+          bg-[rgba(245,241,234,0.78)]
+          backdrop-blur-lg
+          border border-white/35
+          text-[var(--forest-deep)]
+          text-sm
+          tracking-[0.14em]
+          uppercase
+          shadow-[0_10px_35px_rgba(0,0,0,0.15)]
+          hover:bg-[rgba(245,241,234,0.9)]
+          hover:scale-[1.02]
+          transition-all duration-300
+          "
         >
           Kostenlose Besichtigung
         </a>
@@ -435,7 +448,7 @@ whitespace-pre-line
             Ihr Spezialist in Sachen <em className="italic text-[var(--forest)]">Baumpflege</em>.
           </motion.h2>
           <motion.p {...fadeUp(0.2)} className="mt-8 text-muted-foreground text-lg leading-relaxed font-light">
-            Seit vielen Jahren pflanze, pflege und fälle ich Bäume im Piestingtal und in der gesamten Region vom Schneeberg bis zum Steppensee. Jede Arbeit beginnt mit einem genauen Blick — und einer kostenlosen Besichtigung vor Ort.
+            Seit vielen Jahren pflanze, pflege und fälle ich Bäume im Piestingtal und in der gesamten Region vom Schneeberg bis zum Steppensee. Jede Arbeit beginnt mit einer kostenlosen Besichtigung vor Ort.
           </motion.p>
         </div>
 
@@ -725,16 +738,8 @@ hover:shadow-[0_34px_120px_rgba(0,0,0,0.26)]
         {...fadeUp(0.1)}
         className="text-4xl md:text-[3.4rem] leading-[1.04] tracking-[-0.02em] text-white"
       >
-        Echte Arbeit. Echte Bäume.
+        Eindrücke aus meinem Arbeitsalltag
       </motion.h2>
-
-      <motion.p
-        {...fadeUp(0.2)}
-        className="mt-6 text-[var(--cream)]/70 font-light max-w-lg mx-auto"
-      >
-        Eindrücke aus meinem Arbeitsalltag — vom Kletterseil bis zum
-        Obstbaumschnitt im Piestingtal.
-      </motion.p>
     </div>
 
 {/* GRID */}
@@ -1356,14 +1361,6 @@ transition-all duration-500" />
         </em>
       </motion.h2>
 
-      <motion.p
-        {...fadeUp(0.15)}
-        className="text-lg text-foreground/70 leading-relaxed font-light max-w-lg mb-12"
-      >
-        Ob Baumpflege, Schnitt, Kontrolle oder sichere Abtragung —
-        ich nehme mir persönlich Zeit für Ihr Anliegen und berate Sie direkt vor Ort.
-      </motion.p>
-
       {/* CONTACT INFOS */}
       <motion.div
         {...fadeUp(0.2)}
@@ -1635,9 +1632,7 @@ transition-all duration-500" />
 
       {/* TEXT */}
       <p className="max-w-xl text-[15px] md:text-base leading-relaxed text-[var(--cream)]/68 font-light mb-10">
-        Fachgerechte Baumpflege mit Respekt vor Natur,
-        Sicherheit und langlebiger Qualität —
-        persönlich betreut in Ostösterreich.
+      Handwerk, Erfahrung und tiefer Respekt vor der Natur in der Region Ostösterreichs.
       </p>
 
       {/* LINKS */}
